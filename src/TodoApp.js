@@ -7,33 +7,32 @@ import TodoForm from "./TodoForm";
 
 const DEFAULT_TODOS = [
   {
-    id: 1,
+    id: uuid(),
     title: "Code!",
     description: "Write some code",
     priority: 2,
   },
   {
-    id: 2,
+    id: uuid(),
     title: "Make dinner",
     description: "Cook something healthy",
     priority: 1,
   },
   {
-    id: 3,
+    id: uuid(),
     title: "Go to bed",
     description: "In bed by 11:15",
     priority: 3,
   },
-]
+];
 
 /** App for managing a todo list.
  *
  * Props:
- * - initialTodos: possible array of [ todo, ... ]
+ * - initialTodos: possible array of [ { id, title, description, priority }, ... ]
  *
  * State:
- * - todos: array of [ todo, ... ]
- * TODO: destructure object for visual
+ * - todos: array of [ { id, title, description, priority }, ... ]
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
@@ -42,20 +41,23 @@ function TodoApp({ initialTodos = DEFAULT_TODOS }) {
 
   /** add a new todo to list */
   function create(newTodo) {
-    // TODO: could be where convert priority to number
-    setTodos(t => [...t, {...newTodo, id: uuid()}])
+    setTodos(t => [...t, { ...newTodo, id: uuid() }]);
   }
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
-    setTodos(todos.map(t => t.id === updatedTodo.id ? { ...updatedTodo } : t));
+    setTodos(existingTodos =>
+      existingTodos.map(t =>
+        t.id === updatedTodo.id ? { ...updatedTodo } : t
+      )
+    );
   }
-// TODO: continue to use callback pattern
+
   /** delete a todo by id */
   function remove(id) {
-    setTodos(todos.filter(t => t.id !== id));
+    setTodos(existingTodos => existingTodos.filter(t => t.id !== id));
   }
-// TODO: consistent logic
+
   return (
     <main className="TodoApp">
       <div className="row">
@@ -70,7 +72,7 @@ function TodoApp({ initialTodos = DEFAULT_TODOS }) {
 
         <div className="col-md-6">
           {
-            todos.length !== 0
+            todos.length > 0
             && <section className="mb-4">
               <h3>Top Todo</h3>
               <TopTodo todos={todos} />
@@ -79,7 +81,7 @@ function TodoApp({ initialTodos = DEFAULT_TODOS }) {
 
           <section>
             <h3 className="mb-3">Add Nü</h3>
-            <TodoForm handleSave={create}/>
+            <TodoForm handleSave={create} />
           </section>
         </div>
 
