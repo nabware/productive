@@ -1,6 +1,7 @@
 import React from "react";
 import EditableTodo from "./EditableTodo";
 
+
 /** Show list of editable todos.
  *
  * Props:
@@ -14,7 +15,13 @@ import EditableTodo from "./EditableTodo";
 function EditableTodoList({todos, update, remove}) {
   return (
       <div>
-        {todos.map(t => <EditableTodo todo={t} update={update} remove={remove} /> )}
+        {todos.map(t => (
+        <EditableTodo
+          key={t.id}
+          todo={t}
+          update={update}
+          remove={remove}
+        /> ))}
       </div>
   );
 }

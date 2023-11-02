@@ -11,6 +11,8 @@ import Todo from "./Todo";
  */
 
 function TopTodo({todos}) {
+  // TODO: Add guard statement for todo, return null for no render
+  if(todos.length === 0 ) return null;
   // lowest-priority # is the highest priority
   let top = todos.reduce(
       (acc, cur) => cur.priority < acc.priority ? cur : acc, todos[0]);

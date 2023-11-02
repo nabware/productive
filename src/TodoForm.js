@@ -20,7 +20,7 @@ const DEFAULT_FORM_DATA = {
 
 function TodoForm({initialFormData = DEFAULT_FORM_DATA, handleSave}) {
   const [formData, setFormData] = useState(initialFormData);
-
+//  TODO: Can convert priority to number here as well, add new function for priority
   /** Update form input. */
   function handleChange(evt) {
     const {name, value} = evt.target;
