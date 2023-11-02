@@ -12,7 +12,7 @@ import TodoForm from "./TodoForm";
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo() {
+function EditableTodo({todo}) {
 
   /** Toggle if this is being edited */
   function toggleEdit() { }
