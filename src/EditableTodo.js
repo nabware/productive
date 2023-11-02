@@ -4,6 +4,9 @@ import TodoForm from "./TodoForm";
 
 /** Show editable todo item.
  *
+ * State:
+ * - isEditable: true/false for form render
+ *
  * Props
  * - todo
  * - update(): fn to call to update a todo
@@ -13,9 +16,12 @@ import TodoForm from "./TodoForm";
  */
 
 function EditableTodo({todo}) {
+  const [isEditable, setIsEditable] = useState(false);
 
   /** Toggle if this is being edited */
-  function toggleEdit() { }
+  function toggleEdit() {
+    setIsEditable(curr => !curr);
+  }
 
   /** Call remove fn passed to this. */
   function handleDelete() { }
@@ -26,27 +32,30 @@ function EditableTodo({todo}) {
   return (
       <div className="EditableTodo">
 
-                EITHER
+                {isEditable
+                  ? <TodoForm initialFormData={todo}/>
+                  :<div className="mb-3">
+                    <div className="float-end text-sm-end">
+                      <button
+                          className="EditableTodo-toggle btn-link btn btn-sm"
+                          onClick={toggleEdit}>
+                        Edit
+                      </button>
+                      <button
+                          className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+                          onClick={handleDelete}>
+                        Del
+                      </button>
+                    </div>
+                    <Todo todo={todo} />
+                  </div>
+              }
 
-                <TodoForm />
+
 
                 OR
 
-                <div className="mb-3">
-                  <div className="float-end text-sm-end">
-                    <button
-                        className="EditableTodo-toggle btn-link btn btn-sm"
-                        onClick={toggleEdit}>
-                      Edit
-                    </button>
-                    <button
-                        className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-                        onClick={handleDelete}>
-                      Del
-                    </button>
-                  </div>
-                  <Todo />
-                </div>
+
 
       </div>
   );
