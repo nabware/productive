@@ -3,80 +3,45 @@ import { render, fireEvent } from "@testing-library/react";
 import EditableTodo from "./EditableTodo.js";
 import TEST_TODOS from "./_testCommon.js";
 
-function dumbyHandleSave(){}
+function dumbyHandleSave() { }
 
 describe("todo form", function () {
   it("renders without crashing", function () {
-    render(<EditableTodo todo={TEST_TODOS[0]}/>);
+    render(<EditableTodo todo={TEST_TODOS[0]} />);
   });
 
   it("displays todo, edit, and delete buttons", function () {
-    const {getByText} = render(<EditableTodo todo={TEST_TODOS[0]}/>);
+    const { getByText } = render(<EditableTodo todo={TEST_TODOS[0]} />);
 
     expect(getByText("test1title")).toBeInTheDocument();
     expect(getByText("Del")).toBeInTheDocument();
     expect(getByText("Edit")).toBeInTheDocument();
   });
 
-  // TODO: edit button shows form, save button hide form
-  
-  // it("populate input fields, submit, and clear input fields", function () {
-  //   const { container, queryByText } = render(<TodoForm handleSave={dumbyHandleSave}/>);
+  it("edit button shows form on click and hides on save", function () {
+    const { container, getByText } = render(<EditableTodo todo={TEST_TODOS[0]} update={dumbyHandleSave} />);
 
-  //   const titleInput = container.querySelector("#newTodo-title")
-  //   const descriptionInput = container.querySelector("#newTodo-description")
-  //   const priorityInput = container.querySelector("#newTodo-priority")
-  //   const submitBtn = queryByText("Gø!");
+    expect(container.querySelector("#newTodo-title")).not.toBeInTheDocument();
+    expect(container.querySelector("#newTodo-description")).not.toBeInTheDocument();
+    expect(container.querySelector("#newTodo-priority")).not.toBeInTheDocument();
 
-  //   expect(titleInput).toHaveValue("");
-  //   expect(descriptionInput).toHaveValue("");
-  //   expect(priorityInput).toHaveValue("1");
+    const editButton = getByText("Edit");
+    fireEvent.click(editButton);
 
-  //   fireEvent.change(titleInput, { target: { value: "test4title" } });
-  //   fireEvent.change(descriptionInput, { target: { value: "test4description" } });
-  //   fireEvent.change(priorityInput, { target: { value: 3 } });
+    expect(container.querySelector("#newTodo-title")).toBeInTheDocument();
+    expect(container.querySelector("#newTodo-description")).toBeInTheDocument();
+    expect(container.querySelector("#newTodo-priority")).toBeInTheDocument();
 
-  //   expect(titleInput).toHaveValue("test4title");
-  //   expect(descriptionInput).toHaveValue("test4description");
-  //   expect(priorityInput).toHaveValue("3");
+    const saveButton = getByText("Gø!");
+    fireEvent.click(saveButton);
 
-  //   fireEvent.click(submitBtn);
+    expect(container.querySelector("#newTodo-title")).not.toBeInTheDocument();
+    expect(container.querySelector("#newTodo-description")).not.toBeInTheDocument();
+    expect(container.querySelector("#newTodo-priority")).not.toBeInTheDocument();
+  });
 
-  //   expect(titleInput).toHaveValue("");
-  //   expect(descriptionInput).toHaveValue("");
-  //   expect(priorityInput).toHaveValue("1");
-  // });
-
-  // it("fills form with initial form data, submit, clears input fields", function () {
-  //   const { container, queryByText } = render(
-  //     <TodoForm initialFormData={TEST_TODOS[1]} handleSave={dumbyHandleSave}/>);
-
-  //   const titleInput = container.querySelector("#newTodo-title")
-  //   const descriptionInput = container.querySelector("#newTodo-description")
-  //   const priorityInput = container.querySelector("#newTodo-priority")
-  //   const submitBtn = queryByText("Gø!");
-
-  //   expect(titleInput).toHaveValue("test2title");
-  //   expect(descriptionInput).toHaveValue("test2description");
-  //   expect(priorityInput).toHaveValue("2");
-
-  //   fireEvent.change(titleInput, { target: { value: "test4title" } });
-  //   fireEvent.change(descriptionInput, { target: { value: "test4description" } });
-  //   fireEvent.change(priorityInput, { target: { value: 3 } });
-
-  //   expect(titleInput).toHaveValue("test4title");
-  //   expect(descriptionInput).toHaveValue("test4description");
-  //   expect(priorityInput).toHaveValue("3");
-
-  //   fireEvent.click(submitBtn);
-
-  //   expect(titleInput).toHaveValue("");
-  //   expect(descriptionInput).toHaveValue("");
-  //   expect(priorityInput).toHaveValue("1");
-  // });
-
-  it ("snapshot", function () {
-    const { container } = render(<EditableTodo todo={TEST_TODOS[0]}/>);
+  it("snapshot", function () {
+    const { container } = render(<EditableTodo todo={TEST_TODOS[0]} />);
     expect(container).toMatchSnapshot();
   });
 });

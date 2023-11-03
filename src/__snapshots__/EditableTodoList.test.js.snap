@@ -1,0 +1,267 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`smoketest snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="EditableTodo"
+    >
+      <div
+        class="mb-3"
+      >
+        <div
+          class="float-end text-sm-end"
+        >
+          <button
+            class="EditableTodo-toggle btn-link btn btn-sm"
+          >
+            Edit
+          </button>
+          <button
+            class="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+          >
+            Del
+          </button>
+        </div>
+        <div
+          class="Todo"
+        >
+          <div>
+            <b>
+              test1title
+            </b>
+             
+            <small>
+              (priority: 
+              1
+              )
+            </small>
+          </div>
+          <div>
+            <small>
+              test1description
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="EditableTodo"
+    >
+      <div
+        class="mb-3"
+      >
+        <div
+          class="float-end text-sm-end"
+        >
+          <button
+            class="EditableTodo-toggle btn-link btn btn-sm"
+          >
+            Edit
+          </button>
+          <button
+            class="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+          >
+            Del
+          </button>
+        </div>
+        <div
+          class="Todo"
+        >
+          <div>
+            <b>
+              test2title
+            </b>
+             
+            <small>
+              (priority: 
+              2
+              )
+            </small>
+          </div>
+          <div>
+            <small>
+              test2description
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="EditableTodo"
+    >
+      <div
+        class="mb-3"
+      >
+        <div
+          class="float-end text-sm-end"
+        >
+          <button
+            class="EditableTodo-toggle btn-link btn btn-sm"
+          >
+            Edit
+          </button>
+          <button
+            class="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+          >
+            Del
+          </button>
+        </div>
+        <div
+          class="Todo"
+        >
+          <div>
+            <b>
+              test3title
+            </b>
+             
+            <small>
+              (priority: 
+              3
+              )
+            </small>
+          </div>
+          <div>
+            <small>
+              test3description
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`todo form snapshot 1`] = `
+<div>
+  <div>
+    <div
+      class="EditableTodo"
+    >
+      <div
+        class="mb-3"
+      >
+        <div
+          class="float-end text-sm-end"
+        >
+          <button
+            class="EditableTodo-toggle btn-link btn btn-sm"
+          >
+            Edit
+          </button>
+          <button
+            class="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+          >
+            Del
+          </button>
+        </div>
+        <div
+          class="Todo"
+        >
+          <div>
+            <b>
+              test1title
+            </b>
+             
+            <small>
+              (priority: 
+              1
+              )
+            </small>
+          </div>
+          <div>
+            <small>
+              test1description
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="EditableTodo"
+    >
+      <div
+        class="mb-3"
+      >
+        <div
+          class="float-end text-sm-end"
+        >
+          <button
+            class="EditableTodo-toggle btn-link btn btn-sm"
+          >
+            Edit
+          </button>
+          <button
+            class="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+          >
+            Del
+          </button>
+        </div>
+        <div
+          class="Todo"
+        >
+          <div>
+            <b>
+              test2title
+            </b>
+             
+            <small>
+              (priority: 
+              2
+              )
+            </small>
+          </div>
+          <div>
+            <small>
+              test2description
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="EditableTodo"
+    >
+      <div
+        class="mb-3"
+      >
+        <div
+          class="float-end text-sm-end"
+        >
+          <button
+            class="EditableTodo-toggle btn-link btn btn-sm"
+          >
+            Edit
+          </button>
+          <button
+            class="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+          >
+            Del
+          </button>
+        </div>
+        <div
+          class="Todo"
+        >
+          <div>
+            <b>
+              test3title
+            </b>
+             
+            <small>
+              (priority: 
+              3
+              )
+            </small>
+          </div>
+          <div>
+            <small>
+              test3description
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
