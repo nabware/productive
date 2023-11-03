@@ -11,6 +11,7 @@ describe("todo form", function () {
   });
 
   it("populate input fields, submit, and clear input fields", function () {
+    const dumbyHandleSave = jest.fn();
     const { container, queryByText } = render(<TodoForm handleSave={dumbyHandleSave}/>);
 
     const titleInput = container.querySelector("#newTodo-title")
@@ -35,9 +36,11 @@ describe("todo form", function () {
     expect(titleInput).toHaveValue("");
     expect(descriptionInput).toHaveValue("");
     expect(priorityInput).toHaveValue("1");
+    expect(dumbyHandleSave).toHaveBeenCalledTimes(1);
   });
 
   it("fills form with initial form data, submit, clears input fields", function () {
+    const dumbyHandleSave = jest.fn();
     const { container, queryByText } = render(
       <TodoForm initialFormData={TEST_TODOS[1]} handleSave={dumbyHandleSave}/>);
 
@@ -63,6 +66,7 @@ describe("todo form", function () {
     expect(titleInput).toHaveValue("");
     expect(descriptionInput).toHaveValue("");
     expect(priorityInput).toHaveValue("1");
+    expect(dumbyHandleSave).toHaveBeenCalledTimes(1);
   });
 
   it ("snapshot", function () {
