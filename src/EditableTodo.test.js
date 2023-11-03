@@ -5,7 +5,7 @@ import TEST_TODOS from "./_testCommon.js";
 
 function dumbyHandleSave() { }
 
-describe("todo form", function () {
+describe("EditableTodo", function () {
   it("renders without crashing", function () {
     render(<EditableTodo todo={TEST_TODOS[0]} />);
   });

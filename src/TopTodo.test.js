@@ -15,7 +15,13 @@ describe("top todo", function () {
     expect(result.queryByText("test3title")).not.toBeInTheDocument();
   });
 
-  it ("snapshot", function () {
+  it("null when no todos", function () {
+    const { container } = render(<TopTodo todos={[]} />);
+
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it("snapshot", function () {
     const { container } = render(<TopTodo todos={TEST_TODOS} />);
     expect(container).toMatchSnapshot();
   });

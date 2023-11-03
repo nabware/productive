@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import EditableTodoList from "./EditableTodoList.js";
 import TEST_TODOS from "./_testCommon.js";
 
-describe("smoketest", function () {
+describe("EditableTodoList", function () {
   it("renders without crashing", function () {
     render(<EditableTodoList todos={TEST_TODOS} />);
   });

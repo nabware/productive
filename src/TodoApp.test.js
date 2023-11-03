@@ -20,6 +20,30 @@ describe("TodoApp", function () {
     expect(queryByText("Top Todo")).toBeNull();
   });
 
+  it("add new todo", function () {
+    const { container, getByText, queryByText } = render(<TodoApp initialTodos={[]} />);
+
+    expect(getByText("You have no todos.")).toBeInTheDocument();
+
+    const titleInput = container.querySelector("#newTodo-title")
+    const descriptionInput = container.querySelector("#newTodo-description")
+    const priorityInput = container.querySelector("#newTodo-priority")
+    const submitBtn = within(container).getByText("Gø!");
+
+    fireEvent.change(titleInput, { target: { value: "test4title" } });
+    fireEvent.change(descriptionInput, { target: { value: "test4description" } });
+    fireEvent.change(priorityInput, { target: { value: 3 } });
+
+    fireEvent.click(submitBtn);
+
+    expect(queryByText("You have no todos.")).toBeNull();
+
+    const editableTodo = container.querySelector(".EditableTodo");
+    expect(within(editableTodo).getByText("test4title")).toBeInTheDocument();
+    expect(within(editableTodo).getByText("test4description")).toBeInTheDocument();
+    expect(within(editableTodo).getByText("(priority: 3)")).toBeInTheDocument();
+  });
+
   it("edit todo and saving updates todo list", function () {
     const { container, getByText } = render(<TodoApp initialTodos={[TEST_TODOS[0]]} />);
 
@@ -32,38 +56,69 @@ describe("TodoApp", function () {
     const editButton = getByText("Edit");
     fireEvent.click(editButton);
 
-    expect(editableTodo.querySelector("#newTodo-title")).toBeInTheDocument();
-    expect(editableTodo.querySelector("#newTodo-description")).toBeInTheDocument();
-    expect(editableTodo.querySelector("#newTodo-priority")).toBeInTheDocument();
+    const titleInput = editableTodo.querySelector("#newTodo-title")
+    const descriptionInput = editableTodo.querySelector("#newTodo-description")
+    const priorityInput = editableTodo.querySelector("#newTodo-priority")
+    const submitBtn = within(editableTodo).getByText("Gø!");
 
-    // const saveButton = getByText("Gø!");
-    // fireEvent.click(saveButton);
+    fireEvent.change(titleInput, { target: { value: "test4title" } });
+    fireEvent.change(descriptionInput, { target: { value: "test4description" } });
+    fireEvent.change(priorityInput, { target: { value: 3 } });
 
-    // expect(container.querySelector("#newTodo-title")).not.toBeInTheDocument();
-    // expect(container.querySelector("#newTodo-description")).not.toBeInTheDocument();
-    // expect(container.querySelector("#newTodo-priority")).not.toBeInTheDocument();
+    fireEvent.click(submitBtn);
+
+    expect(within(editableTodo).getByText("test4title")).toBeInTheDocument();
+    expect(within(editableTodo).getByText("test4description")).toBeInTheDocument();
+    expect(within(editableTodo).getByText("(priority: 3)")).toBeInTheDocument();
   });
-  //Edit button saves changes/update
-  //Priority changes
-  //Add new todo render/ Creating todo adds to list
-  //Delete todo
 
+  it("delete todo", function () {
+    const { container } = render(<TodoApp initialTodos={[TEST_TODOS[0]]} />);
 
-  // it("displays all todos", function () {
-  //   const { getByText } = render(<EditableTodoList todos={TEST_TODOS} />);
+    const editableTodo = container.querySelector(".EditableTodo");
+    expect(within(editableTodo).getByText("test1title")).toBeInTheDocument();
+    expect(within(editableTodo).getByText("test1description")).toBeInTheDocument();
+    expect(within(editableTodo).getByText("(priority: 1)")).toBeInTheDocument();
 
-  //   expect(getByText("test1title")).toBeInTheDocument();
-  //   expect(getByText("test1description")).toBeInTheDocument();
-  //   expect(getByText("(priority: 1)")).toBeInTheDocument();
+    const deleteBtn = within(container).getByText("Del");
+    fireEvent.click(deleteBtn);
 
-  //   expect(getByText("test2title")).toBeInTheDocument();
-  //   expect(getByText("test2description")).toBeInTheDocument();
-  //   expect(getByText("(priority: 2)")).toBeInTheDocument();
+    expect(container.querySelector(".EditableTodo")).toBeNull();
+  });
 
-  //   expect(getByText("test3title")).toBeInTheDocument();
-  //   expect(getByText("test3description")).toBeInTheDocument();
-  //   expect(getByText("(priority: 3)")).toBeInTheDocument();
-  // });
+  it("priority changes", function () {
+    const { container, queryByText } = render(<TodoApp initialTodos={TEST_TODOS} />);
+
+    const topTodo = queryByText("Top Todo").closest("section");
+    expect(within(topTodo).getByText("test1title")).toBeInTheDocument();
+    expect(within(topTodo).getByText("test1description")).toBeInTheDocument();
+    expect(within(topTodo).getByText("(priority: 1)")).toBeInTheDocument();
+
+    const deleteBtn = container.querySelector(".EditableTodo-delBtn");
+    fireEvent.click(deleteBtn);
+
+    expect(within(topTodo).getByText("test2title")).toBeInTheDocument();
+    expect(within(topTodo).getByText("test2description")).toBeInTheDocument();
+    expect(within(topTodo).getByText("(priority: 2)")).toBeInTheDocument();
+  });
+
+  it("displays all todos", function () {
+    const { container } = render(<TodoApp initialTodos={TEST_TODOS} />);
+
+    const editableTodoList = container.querySelector(".EditableTodoList");
+
+    expect(within(editableTodoList).getByText("test1title")).toBeInTheDocument();
+    expect(within(editableTodoList).getByText("test1description")).toBeInTheDocument();
+    expect(within(editableTodoList).getByText("(priority: 1)")).toBeInTheDocument();
+
+    expect(within(editableTodoList).getByText("test2title")).toBeInTheDocument();
+    expect(within(editableTodoList).getByText("test2description")).toBeInTheDocument();
+    expect(within(editableTodoList).getByText("(priority: 2)")).toBeInTheDocument();
+
+    expect(within(editableTodoList).getByText("test3title")).toBeInTheDocument();
+    expect(within(editableTodoList).getByText("test3description")).toBeInTheDocument();
+    expect(within(editableTodoList).getByText("(priority: 3)")).toBeInTheDocument();
+  });
 
   it("snapshot", function () {
     const { container } = render(<TodoApp initialTodos={TEST_TODOS} />);
