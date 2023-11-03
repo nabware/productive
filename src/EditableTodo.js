@@ -51,7 +51,7 @@ function EditableTodo({ todo, update, remove }) {
               Del
             </button>
           </div>
-          <Todo todo={todo} />
+          <Todo todo={todo} update={update} />
         </div>
       }
     </div>

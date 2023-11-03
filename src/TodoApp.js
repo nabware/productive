@@ -11,18 +11,22 @@ const DEFAULT_TODOS = [
     title: "Code!",
     description: "Write some code",
     priority: 2,
+    isComplete: false,
+
   },
   {
     id: uuid(),
     title: "Make dinner",
     description: "Cook something healthy",
     priority: 1,
+    isComplete: false,
   },
   {
     id: uuid(),
     title: "Go to bed",
     description: "In bed by 11:15",
     priority: 3,
+    isComplete: false,
   },
 ];
 
@@ -72,10 +76,10 @@ function TodoApp({ initialTodos = DEFAULT_TODOS }) {
 
         <div className="col-md-6">
           {
-            todos.length > 0
+             todos.filter(t => !t.isComplete).length > 0
             && <section className="mb-4">
               <h3>Top Todo</h3>
-              <TopTodo todos={todos} />
+              <TopTodo todos={todos} update={update} />
             </section>
           }
 

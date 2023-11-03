@@ -8,14 +8,21 @@ import React from "react";
  * { EditableTodo, TopTodo } -> Todo
  **/
 
-function Todo({ todo }) {
-  const { title, description, priority } = todo;
+function Todo({ todo, update }) {
+  const { title, description, priority, isComplete } = todo;
+
+  function toggleComplete() { update({ ...todo, isComplete: !isComplete }); }
 
   return (
-      <div className="Todo">
-        <div><b>{title}</b> <small>(priority: {priority})</small></div>
-        <div><small>{description}</small></div>
+    <div className="Todo">
+      <div>
+        {isComplete
+          ? <s onClick={toggleComplete}>{title}</s>
+          : <b onClick={toggleComplete}>{title}</b>}
+        &nbsp;<small>(priority: {priority})</small>
       </div>
+      <div><small>{description}</small></div>
+    </div>
   );
 }
 

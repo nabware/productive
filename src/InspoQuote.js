@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import Quote from "./Quote"
 
-/** Simple presentation component for a todo.
+/** Component for InspoQuote.
  *
- * Props:
- * - todo: like { id, title, description, priority }
+ * State:
+ *  - quote {text, author}
  *
- * { EditableTodo, TopTodo } -> Todo
+ * Header -> InspoQuote
  **/
 
 function InspoQuote() {

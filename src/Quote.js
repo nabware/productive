@@ -1,14 +1,14 @@
 import React from "react";
 
-/** Simple presentation component for a todo.
+/** Simple presentation component for a quote.
  *
  * Props:
- * - todo: like { id, title, description, priority }
+ * - quote: like { text, author }
  *
- * { EditableTodo, TopTodo } -> Todo
+ * InspoQuote -> Todo
  **/
 
-function Quote({ text, author, newQuote }) {
+function Quote({ text, author }) {
   return (
       <div className="Quote">
         <div><i>{text}-{author}</i></div>
