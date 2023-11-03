@@ -42,6 +42,9 @@ function TodoForm({ initialFormData = DEFAULT_FORM_DATA, handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
+    if(formData.title === ""){
+      return alert("Must include a title!")
+    }
     handleSave(formData);
     setFormData({ ...DEFAULT_FORM_DATA });
   }

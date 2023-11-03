@@ -17,6 +17,7 @@ import TodoForm from "./TodoForm";
 
 function EditableTodo({ todo, update, remove }) {
   const [isEditable, setIsEditable] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   /** Toggle if this is being edited */
   function toggleEdit() {
@@ -25,7 +26,8 @@ function EditableTodo({ todo, update, remove }) {
 
   /** Call remove fn passed to this. */
   function handleDelete() {
-    remove(todo.id);
+    setIsDeleted(true);
+    setTimeout(() => remove(todo.id), 2000);
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
@@ -35,7 +37,7 @@ function EditableTodo({ todo, update, remove }) {
    }
 
   return (
-    <div className="EditableTodo">
+    <div className={`EditableTodo ${isDeleted ? "fadeOut" : ""}`}>
       {isEditable
         ? <TodoForm initialFormData={todo} handleSave={handleSave}/>
         : <div className="mb-3">
