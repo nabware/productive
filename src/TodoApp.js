@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
 import TopTodo from "./TopTodo";
@@ -41,7 +41,8 @@ const DEFAULT_TODOS = [
  */
 
 function TodoApp({ initialTodos = DEFAULT_TODOS }) {
-  const [todos, setTodos] = useState(initialTodos);
+  const storedTodos = JSON.parse(localStorage.getItem("todos"));
+  const [todos, setTodos] = useState(storedTodos || initialTodos);
 
   /** add a new todo to list */
   function create(newTodo) {
@@ -61,6 +62,10 @@ function TodoApp({ initialTodos = DEFAULT_TODOS }) {
   function remove(id) {
     setTodos(existingTodos => existingTodos.filter(t => t.id !== id));
   }
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+   }, [todos]);
 
   return (
     <main className="TodoApp">
