@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`todo snapshot 1`] = `
+<div>
+  <div
+    class="Todo"
+  >
+    <div>
+      <b>
+        test1title
+      </b>
+       
+      <small>
+        (priority: 
+        1
+        )
+      </small>
+    </div>
+    <div>
+      <small>
+        test1description
+      </small>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`top todo snapshot 1`] = `
+<div>
+  <div
+    class="Todo"
+  >
+    <div>
+      <b>
+        test1title
+      </b>
+       
+      <small>
+        (priority: 
+        1
+        )
+      </small>
+    </div>
+    <div>
+      <small>
+        test1description
+      </small>
+    </div>
+  </div>
+</div>
+`;
